@@ -1,0 +1,10 @@
+<h1>Welcome to my Blog</h1>
+
+<% @posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <div>
+    <%= truncate post.body %>
+    <%= link_to 'Read full post', post_path(post) %>
+  </div>
+  <p>Posted: <%= post.created_at %></p>
+<% end %>
