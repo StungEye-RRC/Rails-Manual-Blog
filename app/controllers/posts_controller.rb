@@ -10,4 +10,8 @@ class PostsController < ApplicationController
   def show # Show a specific post based on an id from the url.
     @post = Post.find(params[:id])
   end # Automatically load the app/views/posts/show.html.erb
+  
+  def edit
+    # The edit code will go here.
+  end
 end
