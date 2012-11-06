@@ -1,6 +1,17 @@
 # Created by way of:
 # rails g controller posts
 class PostsController < ApplicationController
+  # This filter ensures that the @post variable will be located
+  # using the params[:id] before the show, edit, update and
+  # destroy actions are executed. See the load_post_by_id
+  # method at the bottom of the file.
+  before_filter :load_post_by_id,
+                :only => [:show, :edit, :update, :destroy]
+
+  # This filter ensures that for all actions other than index
+  # and show we authenticate the user by way of the require_sudo
+  # method found in the application_controller.rb file.
+  before_filter :require_sudo, :except => [:index, :show]
   
   def index # Load all Posts
     @posts = Post.order('created_at DESC')
@@ -9,15 +20,14 @@ class PostsController < ApplicationController
       # to the view.
 
   def show # Show a specific post based on an id from the url.
-    @post = Post.find(params[:id])
+    # Empty, since the @post object is loaded by way of a before filter.
   end # Automatically load the app/views/posts/show.html.erb
   
   def edit # Show a specific post within an HTML form.
-    @post = Post.find(params[:id]) # Single Post Object.
+    # Empty, since the @post object is loaded by way of a before filter.
   end # Automatically load the app/views/posts/edit.html.erb
   
   def update # Update a specific post.
-    @post = Post.find(params[:id]) # Single Post Object.
     # Uses the form data from the edit form to
     # update the @post variable. The form data
     # will be in the params hash.
@@ -41,7 +51,6 @@ class PostsController < ApplicationController
   end # No associated view: redirects or renders.
   
   def destroy # Destroy a specific post by id.
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to :action => :index
   end # No associated view: redirect to the index action.
@@ -60,5 +69,12 @@ class PostsController < ApplicationController
       render :action => :new
     end
   end # No associated views: redirects or renders
+  
+  
+  protected
+  
+  def load_post_by_id
+    @post = Post.find(params[:id])
+  end
 end
 
