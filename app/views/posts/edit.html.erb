@@ -1,15 +1,12 @@
 <h1>Edit This Post</h1>
 
-<%= form_for @post do |f| %>
-  <div>
-      <%= f.label :title %><br/>
-      <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %><br/>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit 'Update Post' %>
-<% end %>
+<!-- Rails will look into our current folder for
+     a _form.html.erb to render here.
+     
+     Short form with no local variable creation:
+     <%= render 'form' %>
+-->
+    
+<%= render :partial => 'form', :locals => { :button_text => 'Update Post' }  %>
 
 <p><%= link_to 'Back to All Posts', posts_path %></p>

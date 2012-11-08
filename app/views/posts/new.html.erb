@@ -1,16 +1,9 @@
 <h1>Create a Post</h1>
 
-<%= form_for @post do |f| %>
-  <div>
-      <%= f.label :title %><br/>
-      <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %><br/>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit 'Create Post' %>
-<% end %>
+<!-- Rails will look into our current folder for
+     a _form.html.erb to render here. -->
+     
+<%= render :partial => 'form', :locals => { :button_text => 'Create Post' }  %>
 
 <p><%= link_to 'Back to All Posts', posts_path %></p>
 

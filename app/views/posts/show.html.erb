@@ -1,11 +1,5 @@
-<h1><%= @post.title %></h1>
-<div>
-  <%= @post.body %>
-</div>
-<p><%= @post.created_at %></p>
+<!-- Render the _post.html.erb once for the @post object. -->
 
-<p>
-  <%= link_to 'Edit this post', edit_post_path(@post) %>
-  <%= link_to 'Delete this post', @post, :method => :delete, :confirm => 'Are you sure?' %> 
-  <%= link_to 'All Posts', posts_path %>
-</p>
+<%= render @post %>
+
+<%= link_to 'Back to all posts', posts_path %>
