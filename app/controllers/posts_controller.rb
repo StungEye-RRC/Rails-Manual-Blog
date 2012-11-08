@@ -14,13 +14,14 @@ class PostsController < ApplicationController
   before_filter :require_sudo, :except => [:index, :show]
   
   def index # Load all Posts
-    @posts = Post.order('created_at DESC')
+    @posts = Post.includes(:comments).order('created_at DESC')
   end # Automatically load the app/views/posts/index.html.erb
       # Rails will also hand off the @posts array of posts
       # to the view.
 
   def show # Show a specific post based on an id from the url.
     # Empty, since the @post object is loaded by way of a before filter.
+    @comment = @post.comments.build
   end # Automatically load the app/views/posts/show.html.erb
   
   def edit # Show a specific post within an HTML form.
@@ -74,7 +75,7 @@ class PostsController < ApplicationController
   protected
   
   def load_post_by_id
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 end
 

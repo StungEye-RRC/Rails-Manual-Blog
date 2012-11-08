@@ -1,8 +1,15 @@
 <h2><%= post.title %></h2>
 <div><%= post.body %></div>
+
+<% if post.image.present? %>
+  <div><%= image_tag post.image, :width => '200' %></div>
+<% end %>
+
 <p>Created at: <%= post.created_at %></p>
+
+<p>This post has <%= pluralize post.comments.count, 'comment' %>.</p>
 <div>
-  <%= link_to 'Show', post %> 
+  <%= link_to 'Show', post %>
   <%= link_to 'Edit', edit_post_path(post) %> 
   <%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
 </div>

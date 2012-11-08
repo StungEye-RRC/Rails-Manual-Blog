@@ -1,5 +1,7 @@
 ManualBlog::Application.routes.draw do
   
+  resources :comments
+
   # All of the following routes could be automatically
   # generated for us by including:
   # resources :posts
