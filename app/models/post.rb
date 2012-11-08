@@ -7,7 +7,7 @@
 # the command prompt to created the associated
 # posts table.
 class Post < ActiveRecord::Base
-  attr_accessible  :title, :body
+  attr_accessible  :title, :body, :image
   validates :title, :presence => true
   # validates_presence_of :title
 end
