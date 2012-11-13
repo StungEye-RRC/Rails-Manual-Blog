@@ -1,0 +1,14 @@
+<h1>Blog Name</h1>
+
+
+<h3>Categories</h3>
+<ul>
+  <% Post::ALLOWED_AWESOMENESS.each do |level| %>
+    <%= link_to level, awesomeness_path(:level => level) %>
+  <% end %>
+</ul>
+
+<!-- Render the _blog.html.erb once for each member
+     of the @posts collection. -->
+     
+<%= render :partial => 'blog', :collection => @posts, :as => 'post' %>

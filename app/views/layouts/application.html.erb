@@ -7,8 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if flash[:error] %>
+    <div class="error_msg">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="notice_msg">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 
-<%= yield %>
-
+  <header>BLOGS R US</header>
+  
+  <div id="content">
+    <%= yield %>
+  </div>
+  
+  <footer>This is copywrong 2012.</footer>
 </body>
 </html>

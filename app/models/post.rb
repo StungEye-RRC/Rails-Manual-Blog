@@ -7,9 +7,11 @@
 # the command prompt to created the associated
 # posts table.
 class Post < ActiveRecord::Base
-  attr_accessible  :title, :body, :image
+  ALLOWED_AWESOMENESS = ["Awesome", "Almost Awesome", "Not Awesome At All"]
+  
+  attr_accessible  :title, :body, :image, :awesomeness
   validates :title, :presence => true
-  # validates_presence_of :title
+  validates_inclusion_of :awesomeness, :in => ALLOWED_AWESOMENESS
   
   has_many :comments
 end

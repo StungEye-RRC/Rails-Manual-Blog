@@ -11,5 +11,9 @@
     <%= f.label :image %><br/>
     <%= f.text_field :image %>
   </div>
+  <div>
+    <%= f.label :awesomeness %><br/>
+    <%= f.select :awesomeness, Post::ALLOWED_AWESOMENESS %>
+  </div>
   <%= f.submit button_text  %>
 <% end %>

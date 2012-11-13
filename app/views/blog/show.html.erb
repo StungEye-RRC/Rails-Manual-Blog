@@ -1,0 +1,24 @@
+<%= render :partial => 'blog', :object => @post, :as => 'post' %>
+
+<h2>Comments</h2>
+
+<% if @post.comments.empty? %>
+  <p>There are no comments</p>
+<% else %>
+  <%= render @post.comments  %>
+<% end %>
+
+<%= form_for @comment do |f| %>
+  <div>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <%= f.hidden_field :post_id %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Back to all posts', root_path %>

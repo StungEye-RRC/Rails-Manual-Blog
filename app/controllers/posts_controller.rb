@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   # This filter ensures that for all actions other than index
   # and show we authenticate the user by way of the require_sudo
   # method found in the application_controller.rb file.
-  before_filter :require_sudo, :except => [:index, :show]
+  before_filter :require_sudo
   
   def index # Load all Posts
     @posts = Post.includes(:comments).order('created_at DESC')

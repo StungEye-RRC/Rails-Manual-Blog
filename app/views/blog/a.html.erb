@@ -1,0 +1,6 @@
+<h1>Blog Posts <%= params[:level] %> Category</h1>
+
+<!-- Render the _blog.html.erb once for each member
+     of the @posts collection. -->
+     
+<%= render :partial => 'blog', :collection => @posts, :as => 'post' %>

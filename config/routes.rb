@@ -1,5 +1,12 @@
 ManualBlog::Application.routes.draw do
   
+  # get "blog/index"
+  # match 'blog/index' => 'blog#index', :via => :get
+  
+  root :to => 'blog#index'
+  match 'blog/:id' => 'blog#show', :as => 'blog', :via => :get
+  match 'blog/a/:level' => 'blog#a', :as => 'awesomeness', :via => :get
+
   resources :comments
 
   # All of the following routes could be automatically
